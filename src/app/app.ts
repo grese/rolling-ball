@@ -3,6 +3,7 @@ class App {
     private container: HTMLElement
     private stage: HTMLElement
     private ball: HTMLElement
+    private orientationLocked: boolean = false
 
     public constructor (container: HTMLElement) {
         this.container = container
@@ -18,6 +19,7 @@ class App {
             return
         }
         // we have browser support... continue setup.
+        this.lockOrientation()
         this.setupListeners()
     }
 
@@ -40,6 +42,14 @@ class App {
         if (unsupported) {
             unsupported.classList.remove('hidden')
         }
+    }
+
+    private lockOrientation (): void {
+        screen.orientation.lock('portrait').then(() => {
+            this.orientationLocked = true
+        }).catch(error => {
+            console.error('Orientation Lock Error: ', error)
+        })
     }
 
     private onDeviceOrientationEvent (event: DeviceOrientationEvent): void {
