@@ -1,0 +1,32 @@
+{
+    "name": "rolling-ball",
+    "version": "0.0.0",
+    "description": "In-browser rolling ball demo",
+    "main": "index.js",
+    "scripts": {
+        "build": "tsc && npm run-script static",
+        "dev": "npm run-script build && npm run-script start",
+        "static": "copyfiles -f src/app/index.html src/app/app.css dist/app/",
+        "start": "node dist/server/index.js"
+    },
+    "author": "grese",
+    "license": "ISC",
+    "devDependencies": {
+        "@types/express": "^4.17.0",
+        "@types/node": "^12.7.1",
+        "@typescript-eslint/eslint-plugin": "^1.13.0",
+        "@typescript-eslint/parser": "^1.13.0",
+        "copyfiles": "^2.1.1",
+        "eslint": "^6.1.0",
+        "eslint-config-standard": "^13.0.1",
+        "eslint-plugin-import": "^2.18.2",
+        "eslint-plugin-node": "^9.1.0",
+        "eslint-plugin-promise": "^4.2.1",
+        "eslint-plugin-standard": "^4.0.0",
+        "typescript": "^3.5.3"
+    },
+    "dependencies": {
+        "express": "^4.17.1",
+        "ts-loader": "^6.0.4"
+    }
+}

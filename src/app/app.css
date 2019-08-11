@@ -1,0 +1,49 @@
+
+body {
+    height: 100%;
+    margin: 0;
+}
+
+#unsupported {
+    color: #990000;
+}
+
+#app-container {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+
+#title-container {
+    flex: 0;
+    border-bottom: 1px solid #e0e0e0;
+    margin: 20px;
+}
+
+#title-container h1 {
+    margin: 10px 0;
+}
+
+#stage-container {
+    display: flex;
+    flex: 1;
+}
+
+#stage {
+    flex: 1;
+    margin: 20px;
+    border: 2px solid black;
+    position: relative;
+}
+
+#ball {
+    position: absolute;
+    width: 50px;
+    height: 50px;
+    border-radius: 25px;
+    background-color: #11f0f0;
+}
+
+.hidden {
+    display: none;
+}
