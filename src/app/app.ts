@@ -4,11 +4,14 @@ class App {
     private stage: HTMLElement
     private ball: HTMLElement
     private orientationLocked: boolean = false
+    private stageDimensions: object = {width: 0, height: 0}
+    private ballDimensions: object = {width: 0, height: 0}
+    private ballPosition: object = {x: 0, y: 0}
 
     public constructor (container: HTMLElement) {
         this.container = container
         this.stage = container.querySelector('#stage') as HTMLElement
-        this.ball = container.querySelector('#ball') as HTMLElement
+        this.ball = container.querySelector('.ball') as HTMLElement
         this.setup()
     }
 
@@ -20,12 +23,8 @@ class App {
         }
         // we have browser support... continue setup.
         this.lockOrientation()
+        this.measureDimensions()
         this.setupListeners()
-    }
-
-    private setupListeners (): void {
-        window.addEventListener('deviceorientation', event => this.onDeviceOrientationEvent(event))
-        window.addEventListener('devicemotion', event => this.onDeviceMotionEvent(event))
     }
 
     private browserHasSupport (): boolean {
@@ -52,8 +51,20 @@ class App {
         })
     }
 
+    private measureDimensions (): void {
+        const {width: sWidth, height: sHeight} = this.stage.getBoundingClientRect()
+        const {width: bWidth, height: bHeight} = this.ball.getBoundingClientRect()
+
+        this.stageDimensions = {width: sWidth, height: sHeight}
+        this.ballDimensions = {width: bWidth, height: bHeight}
+    }
+
+    private setupListeners (): void {
+        window.addEventListener('deviceorientation', event => this.onDeviceOrientationEvent(event))
+        window.addEventListener('devicemotion', event => this.onDeviceMotionEvent(event))
+    }
+
     private onDeviceOrientationEvent (event: DeviceOrientationEvent): void {
-        // more to come.
         const {beta, gamma, alpha, absolute} = event
         console.log(`
             DeviceOrientation:\n
@@ -66,7 +77,6 @@ class App {
     }
 
     private onDeviceMotionEvent (event: DeviceMotionEvent): void {
-        // more to come.
         const {
             acceleration,
             accelerationIncludingGravity,
@@ -76,6 +86,7 @@ class App {
         const {x: aX, y: aY, z: aZ} = acceleration as DeviceMotionEventAcceleration
         const {x: agX, y: agY, z: agZ} = accelerationIncludingGravity as DeviceMotionEventAcceleration
         const {beta, alpha, gamma} = rotationRate as DeviceMotionEventRotationRate
+
         console.log(`
             DeviceMotion:\n
             \tAcceleration:\n
@@ -93,6 +104,10 @@ class App {
             \tInterval: ${interval}\n
             \n
         `)
+    }
+
+    private moveBall (): void {
+        // TODO: Move ball
     }
 }
 
