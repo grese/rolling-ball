@@ -6,7 +6,8 @@ class App {
     private orientationLocked: boolean = false
     private stageDimensions: object = {width: 0, height: 0}
     private ballDimensions: object = {width: 0, height: 0}
-    private ballPosition: object = {x: 0, y: 0}
+    private ballMass: number = 0.1 // 0.1 kg == 100 g
+    private ballPosition: object = {x: 0, y: 0, z: 0, angle: 0}
 
     public constructor (container: HTMLElement) {
         this.container = container
@@ -30,8 +31,8 @@ class App {
     private browserHasSupport (): boolean {
         // DeviceMotionEvent, DeviceOrientationEvent, and https are required.
         return (
-            DeviceOrientationEvent instanceof Function &&
-            DeviceMotionEvent instanceof Function &&
+            'ondeviceorientation' in window &&
+            'ondevicemotion' in window &&
             location.protocol === 'http:'
         )
     }
@@ -106,8 +107,28 @@ class App {
         `)
     }
 
-    private moveBall (): void {
-        // TODO: Move ball
+    private moveBall (x: number, y: number, z: number, angle: number): void {
+        Object.assign(this.ball.style, {
+            transform: `rotate3d(${x}, ${y}, ${z}, ${angle}deg)`
+        })
+        // save new ball position.
+        this.ballPosition = {x, y, z, angle}
+    }
+}
+
+class Utils {
+    public static gravity: number = 6.67408 * Math.pow(10, -11) // N * m^2 / kg ^ 2
+
+    public static calculateBallAcceleration (angle: number, inertia: number, mass: number,
+        resistance: number): number {
+        const {gravity} = this
+        // g = gravity
+        // Θ = angle
+        // I = inertia
+        // m = mass
+        // r = resistance
+        // acceleration = g*sin(Θ) / (1 + I/mr^2)
+        return (gravity * Math.sin(angle)) / (1 + (inertia / (mass * Math.pow(resistance, 2))))
     }
 }
 
