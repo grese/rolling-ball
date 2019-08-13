@@ -116,6 +116,7 @@ class App {
     }
 }
 
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 class Utils {
     public static gravity: number = 6.67408 * Math.pow(10, -11) // N * m^2 / kg ^ 2
 
