@@ -22,7 +22,8 @@ artifacts
 
 # API keys and secrets
 .env
-secret
+secret/*
+!secret/.gitkeep
 
 # Dependency directory
 node_modules
