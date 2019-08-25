@@ -13,7 +13,6 @@ Install [Node.JS](https://nodejs.org) if you don't have it already.
 The DeviceOrientation and DeviceMotion APIs require HTTPS to work in safari mobile.
 So, it'll be necessary to setup an HTTPS certificate using the following:
 
-- `mkdir secret`
 - `openssl req -nodes -new -x509 -keyout secret/server.key -out secret/server.cert`
   - Enter at least a country (you can leave the rest blank or fill it in if you wish)
 
