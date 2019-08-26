@@ -18,7 +18,7 @@ So, it'll be necessary to setup an HTTPS certificate using the following:
 
 ### Install ###
 
-- `npm install`
+- `npm i`
 
 ### Run ###
 
