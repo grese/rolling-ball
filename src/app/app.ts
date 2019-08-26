@@ -123,11 +123,7 @@ class Utils {
     public static calculateBallAcceleration (angle: number, inertia: number, mass: number,
         resistance: number): number {
         const {gravity} = this
-        // g = gravity
-        // Θ = angle
-        // I = inertia
-        // m = mass
-        // r = resistance
+        // g = gravity, Θ = angle, I = inertia, m = mass, r = resistance
         // acceleration = g*sin(Θ) / (1 + I/mr^2)
         return (gravity * Math.sin(angle)) / (1 + (inertia / (mass * Math.pow(resistance, 2))))
     }

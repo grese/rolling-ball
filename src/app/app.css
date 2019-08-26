@@ -4,8 +4,12 @@ body {
     margin: 0;
 }
 
-#unsupported {
+.danger {
     color: #990000;
+}
+
+.hidden {
+    display: none;
 }
 
 #app-container {
@@ -24,12 +28,8 @@ body {
     margin: 10px 0;
 }
 
-#stage-container {
-    display: flex;
-    flex: 1;
-}
-
 #stage {
+    display: flex;
     flex: 1;
     margin: 20px;
     border: 2px solid black;
@@ -45,6 +45,7 @@ body {
     background: radial-gradient(circle at 16px 16px, #5cabff, #000);
     box-shadow: 3px 3px 18px rgba(0,0,0,0.4);
     transform: rotate3d(0);
+    margin: 0;
 }
 
 .ball:before {
@@ -58,10 +59,6 @@ body {
     z-index: 2;
     filter: blur(5px);
     background: radial-gradient(circle at 50% 0px, #ffffff, rgba(255, 255, 255, 0) 58%);
-}
-
-.hidden {
-    display: none;
 }
 
 @keyframes roll {
