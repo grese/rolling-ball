@@ -5,8 +5,8 @@
     "main": "index.js",
     "scripts": {
         "build": "tsc && npm run static",
-        "dev": "./node_modules/nodemon/bin/nodemon.js",
-        "start": "node dist/server/index.js",
+        "dev": "./node_modules/nodemon/bin/nodemon.js --config .nodemon.json",
+        "start": "node index.js",
         "start:dev": "npm run build && npm run start",
         "static": "copyfiles -f src/app/index.html src/app/app.css dist/app/"
     },

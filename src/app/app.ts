@@ -129,5 +129,5 @@ class Utils {
     }
 }
 
-const container = document.getElementById('app-container') as HTMLElement
-const app = new App(container) // eslint-disable-line @typescript-eslint/no-unused-vars
+// Instantiate the app
+(new App(document.getElementById('app-container') as HTMLElement))
