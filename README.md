@@ -22,5 +22,5 @@ So, it'll be necessary to setup an HTTPS certificate using the following:
 
 ### Run ###
 
-- Build & Start Dev Server: `npm run-script dev`
+- Build & Start Dev Server: `npm run dev`
 - Open `https://localhost:3333` (*make sure to use https*)
