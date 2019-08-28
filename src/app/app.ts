@@ -5,6 +5,7 @@ class App {
     private ball: HTMLElement
     private orientationLocked: boolean = false
     private stageDimensions: object = {width: 0, height: 0}
+    private stageBoundaries: object = {maxX: 0, maxY: 0}
     private ballDimensions: object = {width: 0, height: 0}
     private ballMass: number = 0.1 // 0.1 kg == 100 g
     private ballPosition: object = {x: 0, y: 0, z: 0, angle: 0}
@@ -33,7 +34,7 @@ class App {
         return (
             'ondeviceorientation' in window &&
             'ondevicemotion' in window &&
-            location.protocol === 'http:'
+            location.protocol === 'https:'
         )
     }
 
@@ -56,8 +57,9 @@ class App {
         const {width: sWidth, height: sHeight} = this.stage.getBoundingClientRect()
         const {width: bWidth, height: bHeight} = this.ball.getBoundingClientRect()
 
-        this.stageDimensions = {width: sWidth, height: sHeight}
-        this.ballDimensions = {width: bWidth, height: bHeight}
+        Object.assign(this.stageDimensions, {width: sWidth, height: sHeight})
+        Object.assign(this.ballDimensions, {width: bWidth, height: bHeight})
+        Object.assign(this.stageBoundaries, {maxX: sWidth - bWidth, maxY: sHeight - bHeight})
     }
 
     private setupListeners (): void {
